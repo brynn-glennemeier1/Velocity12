@@ -1,0 +1,164 @@
+
+<!-- PHP CODE -->
+<?php 
+if (isset($_POST['submit'])){
+    include('proccess-apply.php');
+
+    $name = $_POST['name'];
+    $age = $_POST['age'];
+    $email = $_POST['email'];
+    $applying = $_POST['applying'];
+    $discord = $_POST['discord'];
+    $content = $_POST['content'];
+    $why = $_POST['why'];
+    $team = $_POST['team']; 
+    $sqlinsert = "INSERT INTO application (name, age, email, applying, discord, content, why, team)
+                  VALUES ('$name','$age','$email','$applying','$discord','$content','$why','$team')";
+
+    if (!mysqli_query($dbcon, $sqlinsert)) {
+        die('error submitting new application')
+    }
+    $newapplication = "1 application added to the database!"
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/e241f43b4a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="apply.css">
+    <title>Document</title>
+</head>
+<body>
+<!--  TOP HEADER -->
+    <header>
+        <section class="navigation">
+            <div class="nav-container">
+                <div class="brand">
+                    <a href="home.html"><img src="Velocity12 banner 4.png" alt=""></a>
+                </div>
+                <nav>
+                    <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+                    <ul class="nav-list">
+                        
+                        <li>
+                            <a href="#!">Who We Are</a>
+                            <ul class="nav-dropdown">
+                                <li>
+                                    <a href="#!">About</a>
+                                </li>
+                                <li>
+                                    <a href="#!">Team</a>
+                                </li>
+                                <li>
+                                    <a href="#!">Careers</a>
+                                </li>
+                                <li>
+                                    <a href="apply.html">Apply</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#!">Careers</a>
+                        </li>
+                        <li>
+                            <a href="#!">Store</a>
+                            <ul class="nav-dropdown">
+                                <li>
+                                    <a href="#!">Web Design</a>
+                                </li>
+                                <li>
+                                    <a href="#!">Web Development</a>
+                                </li>
+                                <li>
+                                    <a href="#!">Graphic Design</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#!">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <h2 class="applyMessage">Hello!👋</h2>
+    </header>
+
+    <div class="welcomemessage">
+        <p>Thank you for taking interest <br> in V12. Once you apply, we will <br> 
+            follow up with you as soon as possible</p>
+    </div>
+
+<!-- FORM   -->
+    <div class="formheader"></div>
+    <div class="form-container">
+        <form action="process-apply.php" method="POST">
+            <div class="input-name">
+
+                <div class="div1">
+                <i class="fa-solid fa-user fa-sm"></i>
+                <label for="My-name-is" class="quote-label">What is your name?</label>
+                <input type="text" style="font-family: 'Font Awesome 5 Brands';" id="flname" maxlength="256" name="name" data-name="My name is" placeholder=" Levi Jones" required/>
+                </div>
+
+                <div class="div2">
+                    <i class="fa-solid fa-address-card"></i>
+                <label for="My-age-is" class="quote-label">What is your age?</label>
+                <input type="text" style="font-family: 'Font Awesome 5 Brands';" id="yage" maxlength="256" name="age" data-name="My age is" placeholder="I'm 20 years old" required>
+                </div>
+
+                <div class="div3">
+                <i class="fa-sharp fa-solid fa-envelope fa-sm"></i>
+                <label for="My-email-address">What is your email address?</label>
+                <input type="text" style="font-family: 'Font Awesome 5 Brands';" maxlength="256" name="email" id="yemail" data-name="My age is" placeholder="levijones@gmail.com" required>
+                </div>
+
+                <div class="div4">
+                <i class="fa-solid fa-pen"></i>
+                <label for="Im-applying-for" class="quote-label">What are you applying for?</label>
+                <input type="text" style="font-family: 'Font Awesome 5 Brands';" maxlength="256" name="applying" id="yapply" data-name="Im applying for" placeholder=" I'm applying for comp" required>
+                </div>
+
+                <div class="div5">
+                <i class="fa-brands fa-discord fa-sm"></i>
+                <label for="My-discord-is">What is your discord?</label>
+                <input type="text" style="font-family: 'Font Awesome 5 Brands';" maxlength="256" name="discord" id="ydiscord" data-name="My discord is" placeholder="My discord is levijones or levijones#8989" required>
+                </div>
+
+                <div class="div6">
+                <i class="fa-solid fa-closed-captioning"></i>
+                <label for="Do-I-create-content">Do you create content? If so list the account names.</label>
+                <textarea style="font-family: 'Font Awesome 5 Brands';" name="content" id="createcontent" cols="50" rows="4" placeholder="List usernames!" required></textarea>
+                </div>
+
+                <div class="div7">
+                <i class="fa-solid fa-star fa-sm"></i>
+                <label for="Why-do-I-want-to-join">Why do you want to join V12?</label>
+                <textarea style="font-family: 'Font Awesome 5 Brands';" name="why" id="createcontent" cols="50" rows="4" placeholder="Tell us why.." required></textarea>
+                </div>
+
+                <div class="div8">
+                <i class="fa-solid fa-sparkles fa-sm"></i>
+                <label for="What-can-i-bring-to-the-team">What can you bring to the team?</label>
+                <textarea style="font-family: 'Font Awesome 5 Brands';" name="team" id="createcontent" cols="50" rows="4" placeholder="List reasons why you want to join us.." required></textarea>
+                </div>
+
+                <div class="div9">
+                <i class="fa-solid fa-question fa-sm"></i>
+                <label for="You-should-know">Anything else you'd like us to know?</label>
+                <input type="text" maxlength="256" name="question" data-name="You should know" placeholder="You should know i'm awesome" required>
+                </div>
+            </div>
+            <input type="submit" value="Submit" name="submit">
+        </form>
+
+        <?php 
+           echo $newapplication 
+        ?>
+    </div>
+</body>
+</html>
